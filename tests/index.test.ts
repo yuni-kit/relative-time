@@ -30,22 +30,22 @@ describe('formatRelativeTime', () => {
     describe('英語 (en)', () => {
         it('1分未満は「just now」と返すこと', () => {
             const target = new Date('2026-01-01T11:59:30Z'); // 30秒前
-            expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('just now');
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('just now');
         });
 
         it('1時間未満は「~m ago」と返すこと', () => {
             const target = new Date('2026-01-01T11:50:00Z'); // 10分前
-            expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('10m ago');
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('10m ago');
         });
 
         it('24時間未満は「~h ago」と返すこと', () => {
             const target = new Date('2026-01-01T09:00:00Z'); // 3時間前
-            expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('3h ago');
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('3h ago');
         });
 
         it('7日未満は「~d ago」と返すこと', () => {
             const target = new Date('2025-12-30T12:00:00Z'); // 2日前
-            expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('2d ago');
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('2d ago');
         });
     })
 })
