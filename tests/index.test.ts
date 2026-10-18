@@ -21,9 +21,19 @@ describe('formatRelativeTime', () => {
             expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('3時間前');
         });
 
-        it('7日未満は「~日前」と返すこと', () => {
+        it('30日未満は「~日前」と返すこと', () => {
             const target = new Date('2025-12-30T12:00:00Z'); // 2日前
             expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('2日前');
+        });
+
+        it('365日未満は「~ヶ月前」と返すこと', () => {
+            const target = new Date('2025-11-02T12:00:00Z'); // 60日前
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('2ヶ月前');
+        });
+
+        it('365日以上は「~年前」と返すこと', () => {
+            const target = new Date('2025-01-01T12:00:00Z'); // 365日前
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'ja' })).toBe('1年前');
         });
     })
 
@@ -43,9 +53,19 @@ describe('formatRelativeTime', () => {
             expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('3h ago');
         });
 
-        it('7日未満は「~d ago」と返すこと', () => {
+        it('30日未満は「~d ago」と返すこと', () => {
             const target = new Date('2025-12-30T12:00:00Z'); // 2日前
             expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('2d ago');
+        });
+
+        it('365日未満は「~mo ago」と返すこと', () => {
+            const target = new Date('2025-11-02T12:00:00Z'); // 60日前
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('2mo ago');
+        });
+
+        it('365日以上は「~y ago」と返すこと', () => {
+            const target = new Date('2025-01-01T12:00:00Z'); // 365日前
+            expect(formatRelativeTime(target, { now: baseTime, locale: 'en' })).toBe('1y ago');
         });
     })
 })

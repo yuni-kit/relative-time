@@ -13,6 +13,8 @@ export function formatRelativeTime(target: Date, options: FormatRelativeTimeOpti
     const diffMinutes = Math.floor(diffSeconds / 60);
     const diffHours = Math.floor(diffMinutes / 60);
     const diffDays = Math.floor(diffHours / 24);
+    const diffYears = Math.floor(diffDays / 365);
+    const diffMonths = Math.floor(diffDays / 30);
 
     if (diffSeconds < 60) {
         return locale === 'ja' ? 'たった今' : 'just now';
@@ -23,5 +25,11 @@ export function formatRelativeTime(target: Date, options: FormatRelativeTimeOpti
     if (diffHours < 24) {
         return locale === 'ja' ? `${diffHours}時間前` : `${diffHours}h ago`;
     }
-    return locale === 'ja' ? `${diffDays}日前` : `${diffDays}d ago`;
+    if (diffDays < 30) {
+        return locale === 'ja' ? `${diffDays}日前` : `${diffDays}d ago`;
+    }
+    if (diffYears >= 1) {
+        return locale === 'ja' ? `${diffYears}年前` : `${diffYears}y ago`;
+    }
+    return locale === 'ja' ? `${diffMonths}ヶ月前` : `${diffMonths}mo ago`;
 }
